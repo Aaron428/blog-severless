@@ -1,0 +1,12 @@
+node_modules
+npm-debug*
+/dist
+/index.html
+/package-lock.json
+/.cache-loader
+/.awcache
+/.idea
+build/env.json
+.vscode/launch.json
+*autoGenerate.d.ts
+*autoGenerate.ts
