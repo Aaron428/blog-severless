@@ -4,10 +4,8 @@
 
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom'
-
-const AdminHome = () => {
-  return <div>admin Home</div>
-}
+import AdminHome from './component/Home'
+import 'antd/dist/antd.css';
 
 ReactDOM.render(
   <StrictMode>
