@@ -4,12 +4,16 @@
 
 import { StrictMode } from 'react'
 import ReactDOM from 'react-dom'
-import FrontHeader from './components/FrontHeader'
+import FrontFooter from './components/Footer'
+import FrontHeader from './components/Header'
 
 const FrontHome = () => {
-    return <>
+  return (
+    <>
       <FrontHeader />
+      <FrontFooter />
     </>
+  )
 }
 
 ReactDOM.render(

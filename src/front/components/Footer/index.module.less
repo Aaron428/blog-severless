@@ -1,0 +1,92 @@
+@fontColor: rgba(255, 255, 255, .8);
+@bgColor: #2B2B2B;
+@borderColor: rgba(255, 255, 255, .68);
+@height: 168px;
+
+.front_footer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background-color: @bgColor;
+  color: @fontColor;
+  box-sizing: border-box;
+  padding: 40px 0;
+  font-family: PingFangSC-Regular;
+
+  &_inner {
+    display: flex;
+    width: 1200px;
+
+    .app_box {
+      display: flex;
+      flex-direction: column;
+      width: 210px;
+      height: @height;
+      border-right: 1px solid @borderColor;
+
+      &_title {
+        line-height: 24px;
+        font-family: PingFangSC-Medium;
+        font-size: 22px;
+        font-weight: 500;
+        margin-bottom: 8px;
+        margin-top: 0;
+      }
+
+      &_desc {
+        line-height: 16px;
+        font-family: PingFangSC-Medium;
+        font-size: 12px;
+        margin-bottom: 8px;
+      }
+
+      &_img {
+        width: 76px;
+        height: 76px;
+      }
+    }
+
+    .nav_wrapper {
+      display: flex;
+      justify-content: space-between;
+      width: 628px;
+      box-sizing: border-box;
+      font-size: 12px;
+      padding: 0 80px 0 77px;
+      border-right: 1px solid @borderColor;
+      height: @height;
+
+      .item {
+        &_title {
+          display: inline-block;
+          padding-bottom: 12px;
+          border-bottom: 1px solid @borderColor;
+        }
+
+        &_child_link {
+          display: block;
+          color: rgba(255, 255, 255, .8);
+          line-height: 1;
+          margin-top: 12px;
+          font-size: 14px;
+          cursor: pointer;
+          -webkit-text-decoration: none;
+          text-decoration: none;
+        }
+      }
+    }
+
+    .service_box {
+      color: @fontColor;
+      font-size: 12px;
+      padding-left: 76px;
+      line-height: 1;
+
+      &_phone {
+        font-size: 28px;
+        color: #FFFFFF;
+        margin: 14px 0 24px;
+      }
+    }
+  }
+}
