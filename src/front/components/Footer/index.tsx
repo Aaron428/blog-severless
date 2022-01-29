@@ -9,6 +9,7 @@ const FrontFooter = () => {
         { label: '隐私声明', link: '/about#private' },
         { label: '退换货政策', link: '/about#private' },
         { label: '常见问题', link: '/about#private' },
+        { label: '进入后台', link: '/admin.html' },
       ],
     },
     {
@@ -31,6 +32,12 @@ const FrontFooter = () => {
     },
   ])
 
+  const handleLink = (link: string) => {
+    if (link) {
+      window.location.href = link
+    }
+  }
+
   return (
     <div className={styles.front_footer}>
       <div className={styles.front_footer_inner}>
@@ -48,7 +55,7 @@ const FrontFooter = () => {
             <div className={styles.item} key={d.title}>
               <span className={styles.item_title}>{d.title}</span>
               {d.children?.map((c) => (
-                <div key={c.label} className={styles.item_child_link}>
+                <div onClick={() => handleLink(c.link)} key={c.label} className={styles.item_child_link}>
                   <a>{c.label}</a>
                 </div>
               ))}

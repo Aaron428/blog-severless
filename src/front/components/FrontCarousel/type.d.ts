@@ -3,5 +3,6 @@ declare namespace FrontCarouselType {
     id: string
     src: string
     alt?: string
+    link?: string
   }
 }
