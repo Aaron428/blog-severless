@@ -19,7 +19,7 @@ const FrontHeader = () => {
     <div className={styles.front_header}>
       <img
         className={styles.front_header_img}
-        src="https://blog-serverless-static.oss-cn-guangzhou.aliyuncs.com/images/resource-1643250257391-60444.jpeg"
+        src="https://wx-static.ydjdev.com/resource-1643250257391-60444.jpg"
         alt="notice image"
       />
 
