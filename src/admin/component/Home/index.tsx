@@ -1,15 +1,51 @@
 import { useState } from 'react'
-import { Button, Layout, Menu } from 'antd'
+// component
+import { Button, Drawer, Layout, Menu } from 'antd'
 import { UserOutlined, HomeOutlined, PlusOutlined } from '@ant-design/icons'
-import { v4 } from 'uuid'
+
+// custom components
+import AdminFooter from '../AdminFooter'
+import AdminHeader from '../AdminHeader'
+import AdminGoodsService from '../AdminGoodsService'
+
+// styles and tools
 import style from './index.module.less'
+import { v4 } from 'uuid'
+import { TYPE_MAP } from '@utils/constants'
+
 const { Content, Sider } = Layout
 
+/**
+ * 后台管理 - 配置中心
+ */
 const AdminHome = () => {
+  const [visible, setVisible] = useState(false)
+  const [activeType, setActiveType] = useState<UtilType.TypeString>(null)
   const [settingItem, setSettingItem] = useState<AdminHomeType.ISettingItem[]>([
-    { id: v4(), name: 'header' },
-    { id: v4(), name: 'footer' },
+    { id: v4(), name: '底部' },
+    { id: v4(), name: '头部导航' },
+    { id: v4(), name: '商品服务' },
   ])
+
+  // 关闭右侧弹窗
+  const onClose = () => {
+    setVisible(false)
+  }
+
+  // 匹配不同的组件
+  const handleDrawerComponent = () => {
+    
+    switch (activeType) {
+      case TYPE_MAP.Header:
+        return <AdminHeader />
+      case TYPE_MAP.Footer:
+        return <AdminFooter />
+      case TYPE_MAP.GoodsService:
+        return <AdminGoodsService />
+      default:
+        return null
+    }
+  }
 
   // 返回首页
   const backHome = () => (window.location.href = '/')
@@ -22,6 +58,13 @@ const AdminHome = () => {
       newSettingItem.splice(idx, 1)
     }
     setSettingItem(newSettingItem)
+  }
+
+  // 编辑
+  const handleEdit = (id: string) => {
+    const target = settingItem.findIndex((d) => d.id === id)
+    setActiveType(settingItem[target].name)
+    setVisible(true)
   }
 
   return (
@@ -43,17 +86,30 @@ const AdminHome = () => {
 
       <Content style={{ margin: '24px 16px 0', backgroundColor: '#fff' }}>
         <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-          <Button type="primary" icon={<PlusOutlined />}>添加组件</Button>
+          <div className={style.btn_box}>
+            <Button type="primary" icon={<PlusOutlined />}>
+              添加组件
+            </Button>
+          </div>
           <div className={style.item_wrapper}>
             {settingItem.map((setting) => (
               <div className={style.item} key={setting.id}>
                 {setting.name}
-                <Button size="small" danger onClick={() => handleDel(setting.id)}>
-                  删除
-                </Button>
+                <div className={style.operate_box}>
+                  <Button size="small" onClick={() => handleEdit(setting.id)}>
+                    编辑
+                  </Button>
+                  <Button size="small" danger onClick={() => handleDel(setting.id)}>
+                    删除
+                  </Button>
+                </div>
               </div>
             ))}
           </div>
+
+          <Drawer title="Basic Drawer" width={600} placement="right" onClose={onClose} visible={visible}>
+            {handleDrawerComponent()}
+          </Drawer>
         </div>
       </Content>
     </Layout>
