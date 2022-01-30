@@ -34,14 +34,13 @@ const AdminHome = () => {
 
   // 匹配不同的组件
   const handleDrawerComponent = () => {
-    
     switch (activeType) {
       case TYPE_MAP.Header:
         return <AdminHeader />
       case TYPE_MAP.Footer:
         return <AdminFooter />
       case TYPE_MAP.GoodsService:
-        return <AdminGoodsService />
+        return <AdminGoodsService handleClose={onClose} />
       default:
         return null
     }
@@ -107,7 +106,15 @@ const AdminHome = () => {
             ))}
           </div>
 
-          <Drawer title="Basic Drawer" width={600} placement="right" onClose={onClose} visible={visible}>
+          <Drawer
+            maskClosable={false}
+            title={activeType}
+            width={600}
+            placement="right"
+            onClose={onClose}
+            closable={false}
+            visible={visible}
+          >
             {handleDrawerComponent()}
           </Drawer>
         </div>
